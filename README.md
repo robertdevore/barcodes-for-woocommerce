@@ -1,1 +1,1 @@
-# barcodes-for-woocommerce
+# Barcodes for WooCommerce®

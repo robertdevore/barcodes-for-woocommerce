@@ -1,0 +1,46 @@
+#barcodes-support-btn,
+#barcodes-docs-btn {
+    float: right;
+    margin-left: 12px;
+}
+
+.order-receipt {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    max-width: 400px;
+    margin: 12px 0 0 0;
+}
+
+.order-receipt h3 {
+    text-align: center;
+    color: #333;
+}
+
+.order-receipt h4 {
+    margin-top: 20px;
+    color: #555;
+}
+
+.order-receipt p {
+    margin: 10px 0;
+}
+
+.order-receipt .order-status {
+    text-transform: capitalize;
+}
+
+.view-order-link {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.view-order-link:hover {
+    background-color: #45a049;
+}
