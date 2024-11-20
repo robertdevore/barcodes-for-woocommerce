@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
-require 'vendor/plugin-update-checker/plugin-update-checker.php';
+require 'includes/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
