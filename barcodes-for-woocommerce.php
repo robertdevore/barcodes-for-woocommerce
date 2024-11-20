@@ -1,12 +1,4 @@
 <?php
-/*
-Plugin Name: Barcodes for WooCommerce®
-Description: Generate and manage barcodes/QR codes for WooCommerce orders and products.
-Version: 1.0
-Author: Your Name
-License: GPL2
-*/
-
 /**
  * The plugin bootstrap file
  *
@@ -17,7 +9,7 @@ License: GPL2
  * @wordpress-plugin
  *
  * Plugin Name: Barcodes for WooCommerce®
- * Description: Showcase your latest Bluesky posts on your WordPress® site with customizable display options and seamless integration
+ * Description: Generate and manage barcodes/QR codes for WooCommerce orders and products.
  * Plugin URI:  https://github.com/robertdevore/barcodes-for-woocommerce/
  * Version:     1.0.0
  * Author:      Robert DeVore
@@ -284,6 +276,44 @@ class BarcodesForWooCommerce {
 
         return '<p>' . esc_html__( 'No barcode found.', 'barcodes-for-woocommerce' ) . '</p>';
     }
+
+    public function lookup_barcode() {
+        // Check if the barcode is provided.
+        if ( ! isset( $_POST['barcode'] ) || empty( $_POST['barcode'] ) ) {
+            wp_send_json_error( __( 'No barcode provided.', 'barcodes-for-woocommerce' ) );
+        }
+    
+        // Sanitize the barcode input.
+        $barcode = sanitize_text_field( $_POST['barcode'] );
+    
+        // Get the order ID by barcode.
+        $order_id = $this->get_order_by_barcode( $barcode );
+    
+        if ( $order_id ) {
+            $order          = wc_get_order( $order_id );
+            $customer_email = $order->get_billing_email();
+            $customer_name  = $order->get_formatted_billing_full_name();
+            $order_status   = $order->get_status();
+            $status_color   = $this->get_order_status_color( $order_status );
+    
+            $order_data = [
+                'order_id'         => $order->get_id(),
+                'order_link'       => admin_url( "post.php?post={$order->get_id()}&action=edit" ),
+                'order_date'       => $order->get_date_created()->date( 'Y-m-d H:i:s' ),
+                'order_status'     => ucfirst( $order_status ),
+                'status_color'     => $status_color,
+                'customer_name'    => $customer_name,
+                'customer_link'    => admin_url( "edit.php?s={$customer_email}&post_type=shop_order" ),
+                'customer_phone'   => $order->get_billing_phone(),
+                'customer_email'   => $customer_email,
+                'customer_address' => $order->get_formatted_billing_address(),
+            ];
+    
+            wp_send_json_success( $order_data );
+        } else {
+            wp_send_json_error( __( 'Order not found.', 'barcodes-for-woocommerce' ) );
+        }
+    }    
 
     /**
      * Outputs the settings page.
