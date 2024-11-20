@@ -11,12 +11,12 @@
  * Plugin Name: Barcodes for WooCommerce®
  * Description: Generate and manage barcodes/QR codes for WooCommerce orders and products.
  * Plugin URI:  https://github.com/robertdevore/barcodes-for-woocommerce/
- * Version:     1.0.0
+ * Version:     0.0.1
  * Author:      Robert DeVore
  * Author URI:  https://robertdevore.com/
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: bluesky-feed
+ * Text Domain: barcodes-for-woocommerce
  * Domain Path: /languages
  * Update URI:  https://github.com/robertdevore/barcodes-for-woocommerce/
  */
@@ -39,7 +39,7 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 $myUpdateChecker->setBranch( 'main' );
 
 // Set the version number.
-define( 'BARCODES_FOR_WOOCOMMERCE_VERSION', '1.0.0' );
+define( 'BARCODES_FOR_WOOCOMMERCE_VERSION', '0.0.1' );
 
 /**
  * Main plugin class for building BarcodesForWooCommerce
@@ -277,6 +277,58 @@ class BarcodesForWooCommerce {
         return '<p>' . esc_html__( 'No barcode found.', 'barcodes-for-woocommerce' ) . '</p>';
     }
 
+    public function generate_order_barcodes() {
+        $batch_size = 10;
+        $offset     = isset( $_POST['offset'] ) ? intval( $_POST['offset'] ) : 0;
+    
+        // Fetch orders without barcodes.
+        $query = new WC_Order_Query( [
+            'limit'      => $batch_size,
+            'offset'     => $offset,
+            'meta_query' => [
+                [
+                    'key'     => '_barcode',
+                    'compare' => 'NOT EXISTS',
+                ],
+            ],
+        ] );
+    
+        $orders = $query->get_orders();
+    
+        if ( empty( $orders ) ) {
+            // If this is the first batch and no orders are found, return a message.
+            if ( $offset === 0 ) {
+                wp_send_json_success( [
+                    'updated'   => 0,
+                    'remaining' => 0,
+                    'message'   => esc_html__( 'All orders already have barcodes.', 'barcodes-for-woocommerce' ),
+                ] );
+            }
+    
+            // If later batches, return an "All processed" message.
+            wp_send_json_success( [
+                'updated'   => 0,
+                'remaining' => 0,
+                'message'   => esc_html__( 'All orders processed.', 'barcodes-for-woocommerce' ),
+            ] );
+        }
+    
+        // Generate barcodes for each order in the batch.
+        foreach ( $orders as $order ) {
+            $barcode = $this->create_barcode( $order->get_id() );
+            update_post_meta( $order->get_id(), '_barcode', $barcode );
+        }
+    
+        // Count remaining orders without barcodes.
+        $remaining_orders = $this->get_total_orders_without_barcodes() - $offset - count( $orders );
+    
+        wp_send_json_success( [
+            'updated'   => count( $orders ),
+            'remaining' => max( $remaining_orders, 0 ),
+            'message'   => '',
+        ] );
+    }    
+
     public function lookup_barcode() {
         // Check if the barcode is provided.
         if ( ! isset( $_POST['barcode'] ) || empty( $_POST['barcode'] ) ) {
@@ -385,12 +437,6 @@ class BarcodesForWooCommerce {
                                 <select id="type" name="barcode_settings[type]">
                                     <option value="qr_code" <?php selected( $settings['type'], 'qr_code' ); ?>>
                                         <?php esc_html_e( 'QR Code', 'barcodes-for-woocommerce' ); ?>
-                                    </option>
-                                    <option value="barscan" <?php selected( $settings['type'], 'barscan' ); ?>>
-                                        <?php esc_html_e( 'Barscan', 'barcodes-for-woocommerce' ); ?>
-                                    </option>
-                                    <option value="dotmatrix" <?php selected( $settings['type'], 'dotmatrix' ); ?>>
-                                        <?php esc_html_e( 'Dotmatrix', 'barcodes-for-woocommerce' ); ?>
                                     </option>
                                 </select>
                             </td>

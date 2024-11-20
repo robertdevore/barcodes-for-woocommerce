@@ -6,6 +6,7 @@ jQuery(document).ready(function ($) {
         if (message) {
             progressBar.val(100);
             progressText.text(message);
+            $(`#${type}-progress`).hide(3000);
             return;
         }
 
@@ -16,7 +17,7 @@ jQuery(document).ready(function ($) {
 
         if (completed >= total) {
             progressText.text('Success!');
-            $(`#${type}-progress`).hide();
+            $(`#${type}-progress`).hide(3000);
         }
     }
 
