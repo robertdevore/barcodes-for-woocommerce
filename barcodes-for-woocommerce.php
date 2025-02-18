@@ -51,6 +51,21 @@ use RobertDevore\WPComCheck\WPComPluginHandler;
 new WPComPluginHandler( plugin_basename( __FILE__ ), 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' );
 
 /**
+ * Load plugin text domain for translations
+ * 
+ * @since 1.0.1
+ * @return void
+ */
+function barcodes_wc_load_textdomain() {
+    load_plugin_textdomain( 
+        'barcodes-for-woocommerce', 
+        false, 
+        dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+    );
+}
+add_action( 'plugins_loaded', 'barcodes_wc_load_textdomain' );
+
+/**
  * Main plugin class for building BarcodesForWooCommerce
  */
 class BarcodesForWooCommerce {
