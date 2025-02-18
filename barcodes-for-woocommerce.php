@@ -41,6 +41,15 @@ $myUpdateChecker->setBranch( 'main' );
 // Set the version number.
 define( 'BARCODES_FOR_WOOCOMMERCE_VERSION', '0.0.1' );
 
+// Check if Composer's autoloader is already registered globally.
+if ( ! class_exists( 'RobertDevore\WPComCheck\WPComPluginHandler' ) ) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
+use RobertDevore\WPComCheck\WPComPluginHandler;
+
+new WPComPluginHandler( plugin_basename( __FILE__ ), 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' );
+
 /**
  * Main plugin class for building BarcodesForWooCommerce
  */
