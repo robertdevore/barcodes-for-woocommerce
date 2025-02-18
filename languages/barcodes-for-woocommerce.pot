@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Barcodes for WooCommerce®\n"
-"POT-Creation-Date: 2024-11-20 16:44-0500\n"
-"PO-Revision-Date: 2024-11-20 16:44-0500\n"
+"POT-Creation-Date: 2025-02-18 14:51-0500\n"
+"PO-Revision-Date: 2025-02-18 14:50-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,197 +20,159 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
-"X-Poedit-SearchPathExcluded-1: includes/plugin-update-checker/vendor\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: barcodes-for-woocommerce.php:86 barcodes-for-woocommerce.php:386
+#: classes/BarcodesForWooCommerce.php:50 classes/BarcodesForWooCommerce.php:350
 msgid "Barcodes for WooCommerce"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:87
+#: classes/BarcodesForWooCommerce.php:51
 msgid "Barcodes"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:204
+#: classes/BarcodesForWooCommerce.php:168
 msgid "No new products need barcodes."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:205
+#: classes/BarcodesForWooCommerce.php:169
 msgid "All products processed."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:262
+#: classes/BarcodesForWooCommerce.php:226
 msgid "No order ID provided."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:273 barcodes-for-woocommerce.php:595
-#: barcodes-for-woocommerce.php:616 barcodes-for-woocommerce.php:698
-#: barcodes-for-woocommerce.php:699
+#: classes/BarcodesForWooCommerce.php:237 includes/display-barcodes.php:23
+#: includes/display-barcodes.php:44 includes/display-barcodes.php:126
+#: includes/display-barcodes.php:127
 msgid "Order Barcode"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:277
+#: classes/BarcodesForWooCommerce.php:241
 msgid "No barcode found."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:304
+#: classes/BarcodesForWooCommerce.php:268
 msgid "All orders already have barcodes."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:312
+#: classes/BarcodesForWooCommerce.php:276
 msgid "All orders processed."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:335
+#: classes/BarcodesForWooCommerce.php:299
 msgid "No barcode provided."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:366
+#: classes/BarcodesForWooCommerce.php:330
 msgid "Order not found."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:378 barcodes-for-woocommerce.php:421
+#: classes/BarcodesForWooCommerce.php:342
+#: classes/BarcodesForWooCommerce.php:385
 msgid "General Settings"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:379 barcodes-for-woocommerce.php:457
+#: classes/BarcodesForWooCommerce.php:343
+#: classes/BarcodesForWooCommerce.php:421
 msgid "Scan Barcodes"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:380
+#: classes/BarcodesForWooCommerce.php:344
 msgid "Advanced"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:396
+#: classes/BarcodesForWooCommerce.php:360
 msgid "Support"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:398
+#: classes/BarcodesForWooCommerce.php:362
 msgid "Documentation"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:425
+#: classes/BarcodesForWooCommerce.php:389
 msgid "Enable Barcodes"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:434
+#: classes/BarcodesForWooCommerce.php:398
 msgid "Barcode Type"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:439
+#: classes/BarcodesForWooCommerce.php:403
 msgid "QR Code"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:446
+#: classes/BarcodesForWooCommerce.php:410
 msgid "Barcode Color"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:458
+#: classes/BarcodesForWooCommerce.php:422
 msgid "Use this page to scan barcodes and manage orders."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:459
+#: classes/BarcodesForWooCommerce.php:423
 msgid "Search barcodes"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:460
+#: classes/BarcodesForWooCommerce.php:424
 msgid "Search"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:462
+#: classes/BarcodesForWooCommerce.php:426
 msgid "Or use your camera to scan"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:464
+#: classes/BarcodesForWooCommerce.php:428
 msgid "Start Scanner"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:469
+#: classes/BarcodesForWooCommerce.php:433
 msgid "Advanced Settings"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:470
+#: classes/BarcodesForWooCommerce.php:434
 msgid "Generate barcodes for existing orders and products."
 msgstr ""
 
-#: barcodes-for-woocommerce.php:472
+#: classes/BarcodesForWooCommerce.php:436
 msgid "Orders"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:473
+#: classes/BarcodesForWooCommerce.php:437
 msgid "Generate Barcodes for Orders"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:480
+#: classes/BarcodesForWooCommerce.php:444
 msgid "Products"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:481
+#: classes/BarcodesForWooCommerce.php:445
 msgid "Generate Barcodes for Products"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:594 barcodes-for-woocommerce.php:615
-#: barcodes-for-woocommerce.php:695
+#: includes/display-barcodes.php:22 includes/display-barcodes.php:43
+#: includes/display-barcodes.php:123
 msgid "Order Barcode:"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:596
+#: includes/display-barcodes.php:24
 msgid "Barcode Text:"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:638
+#: includes/display-barcodes.php:66
 msgid "Scan to share this product:"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:643
+#: includes/display-barcodes.php:71
 msgid "Product QR Code"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:664
+#: includes/display-barcodes.php:92
 msgid "Product Barcode:"
 msgstr ""
 
-#: barcodes-for-woocommerce.php:666
+#: includes/display-barcodes.php:94
 msgid "Product Barcode"
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:56
-msgid "View details"
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:79
-#, php-format
-msgid "More information about %s"
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:130
-msgid "Check for updates"
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:217
-#, php-format
-msgctxt "the plugin title"
-msgid "The %s plugin is up to date."
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:219
-#, php-format
-msgctxt "the plugin title"
-msgid "A new version of the %s plugin is available."
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:221
-#, php-format
-msgctxt "the plugin title"
-msgid "Could not determine if updates are available for %s."
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Plugin/Ui.php:227
-#, php-format
-msgid "Unknown update checker status \"%s\""
-msgstr ""
-
-#: includes/plugin-update-checker/Puc/v5p4/Vcs/PluginUpdateChecker.php:113
-msgid "There is no changelog available."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
