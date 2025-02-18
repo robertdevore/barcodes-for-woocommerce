@@ -11,7 +11,7 @@
  * Plugin Name: Barcodes for WooCommerce®
  * Description: Generate and manage barcodes/QR codes for WooCommerce orders and products.
  * Plugin URI:  https://github.com/robertdevore/barcodes-for-woocommerce/
- * Version:     0.0.1
+ * Version:     0.0.2
  * Author:      Robert DeVore
  * Author URI:  https://robertdevore.com/
  * License:     GPL-2.0+
@@ -39,7 +39,7 @@ $myUpdateChecker = PucFactory::buildUpdateChecker(
 $myUpdateChecker->setBranch( 'main' );
 
 // Set the version number.
-define( 'BARCODES_FOR_WOOCOMMERCE_VERSION', '0.0.1' );
+define( 'BARCODES_FOR_WOOCOMMERCE_VERSION', '0.0.2' );
 define( 'BARCODES_ROOT_FILE', __FILE__ );
 
 // Check if Composer's autoloader is already registered globally.
