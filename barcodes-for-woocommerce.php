@@ -280,7 +280,7 @@ class BarcodesForWooCommerce {
     public function generate_order_barcodes() {
         $batch_size = 10;
         $offset     = isset( $_POST['offset'] ) ? intval( $_POST['offset'] ) : 0;
-    
+
         // Fetch orders without barcodes.
         $query = new WC_Order_Query( [
             'limit'      => $batch_size,
@@ -292,9 +292,9 @@ class BarcodesForWooCommerce {
                 ],
             ],
         ] );
-    
+
         $orders = $query->get_orders();
-    
+
         if ( empty( $orders ) ) {
             // If this is the first batch and no orders are found, return a message.
             if ( $offset === 0 ) {
@@ -304,7 +304,7 @@ class BarcodesForWooCommerce {
                     'message'   => esc_html__( 'All orders already have barcodes.', 'barcodes-for-woocommerce' ),
                 ] );
             }
-    
+
             // If later batches, return an "All processed" message.
             wp_send_json_success( [
                 'updated'   => 0,
@@ -312,42 +312,42 @@ class BarcodesForWooCommerce {
                 'message'   => esc_html__( 'All orders processed.', 'barcodes-for-woocommerce' ),
             ] );
         }
-    
+
         // Generate barcodes for each order in the batch.
         foreach ( $orders as $order ) {
             $barcode = $this->create_barcode( $order->get_id() );
             update_post_meta( $order->get_id(), '_barcode', $barcode );
         }
-    
+
         // Count remaining orders without barcodes.
         $remaining_orders = $this->get_total_orders_without_barcodes() - $offset - count( $orders );
-    
+
         wp_send_json_success( [
             'updated'   => count( $orders ),
             'remaining' => max( $remaining_orders, 0 ),
             'message'   => '',
         ] );
-    }    
+    }
 
     public function lookup_barcode() {
         // Check if the barcode is provided.
         if ( ! isset( $_POST['barcode'] ) || empty( $_POST['barcode'] ) ) {
             wp_send_json_error( __( 'No barcode provided.', 'barcodes-for-woocommerce' ) );
         }
-    
+
         // Sanitize the barcode input.
         $barcode = sanitize_text_field( $_POST['barcode'] );
-    
+
         // Get the order ID by barcode.
         $order_id = $this->get_order_by_barcode( $barcode );
-    
+
         if ( $order_id ) {
             $order          = wc_get_order( $order_id );
             $customer_email = $order->get_billing_email();
             $customer_name  = $order->get_formatted_billing_full_name();
             $order_status   = $order->get_status();
             $status_color   = $this->get_order_status_color( $order_status );
-    
+
             $order_data = [
                 'order_id'         => $order->get_id(),
                 'order_link'       => admin_url( "post.php?post={$order->get_id()}&action=edit" ),
@@ -360,12 +360,12 @@ class BarcodesForWooCommerce {
                 'customer_email'   => $customer_email,
                 'customer_address' => $order->get_formatted_billing_address(),
             ];
-    
+
             wp_send_json_success( $order_data );
         } else {
             wp_send_json_error( __( 'Order not found.', 'barcodes-for-woocommerce' ) );
         }
-    }    
+    }
 
     /**
      * Outputs the settings page.
@@ -628,9 +628,9 @@ add_action( 'woocommerce_order_details_after_order_table', 'display_order_barcod
 function display_product_barcode_below_add_to_cart() {
     global $post;
 
-    $barcode  = get_post_meta( $post->ID, '_product_barcode', true );
-    $settings = get_option( 'barcode_settings', [ 'color' => '#000000' ] );
-    $color    = str_replace( '#', '', $settings['color'] );
+    $barcode     = get_post_meta( $post->ID, '_product_barcode', true );
+    $settings    = get_option( 'barcode_settings', [ 'color' => '#000000' ] );
+    $color       = str_replace( '#', '', $settings['color'] );
     $product_url = get_permalink( $post->ID );
 
     if ( $barcode ) {
@@ -717,113 +717,3 @@ function generate_product_barcode_on_save( $post_id ) {
     }
 }
 add_action( 'save_post', 'generate_product_barcode_on_save' );
-
-/**
- * Helper function to handle WordPress.com environment checks.
- *
- * @param string $plugin_slug     The plugin slug.
- * @param string $learn_more_link The link to more information.
- * 
- * @since  0.0.2
- * @return bool
- */
-function wp_com_plugin_check( $plugin_slug, $learn_more_link ) {
-    // Check if the site is hosted on WordPress.com.
-    if ( defined( 'IS_WPCOM' ) && IS_WPCOM ) {
-        // Ensure the deactivate_plugins function is available.
-        if ( ! function_exists( 'deactivate_plugins' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/plugin.php';
-        }
-
-        // Deactivate the plugin if in the admin area.
-        if ( is_admin() ) {
-            deactivate_plugins( $plugin_slug );
-
-            // Add a deactivation notice for later display.
-            add_option( 'wpcom_deactivation_notice', $learn_more_link );
-
-            // Prevent further execution.
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/**
- * Auto-deactivate the plugin if running in an unsupported environment.
- *
- * @since  0.0.2
- * @return void
- */
-function wpcom_auto_deactivation() {
-    if ( wp_com_plugin_check( plugin_basename( __FILE__ ), 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' ) ) {
-        return; // Stop execution if deactivated.
-    }
-}
-add_action( 'plugins_loaded', 'wpcom_auto_deactivation' );
-
-/**
- * Display an admin notice if the plugin was deactivated due to hosting restrictions.
- *
- * @since  0.0.2
- * @return void
- */
-function wpcom_admin_notice() {
-    $notice_link = get_option( 'wpcom_deactivation_notice' );
-    if ( $notice_link ) {
-        ?>
-        <div class="notice notice-error">
-            <p>
-                <?php
-                echo wp_kses_post(
-                    sprintf(
-                        __( 'My Plugin has been deactivated because it cannot be used on WordPress.com-hosted websites. %s', 'barcodes-for-woocommerce' ),
-                        '<a href="' . esc_url( $notice_link ) . '" target="_blank" rel="noopener">' . __( 'Learn more', 'barcodes-for-woocommerce' ) . '</a>'
-                    )
-                );
-                ?>
-            </p>
-        </div>
-        <?php
-        delete_option( 'wpcom_deactivation_notice' );
-    }
-}
-add_action( 'admin_notices', 'wpcom_admin_notice' );
-
-/**
- * Prevent plugin activation on WordPress.com-hosted sites.
- *
- * @since  0.0.2
- * @return void
- */
-function wpcom_activation_check() {
-    if ( wp_com_plugin_check( plugin_basename( __FILE__ ), 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' ) ) {
-        // Display an error message and stop activation.
-        wp_die(
-            wp_kses_post(
-                sprintf(
-                    '<h1>%s</h1><p>%s</p><p><a href="%s" target="_blank" rel="noopener">%s</a></p>',
-                    __( 'Plugin Activation Blocked', 'barcodes-for-woocommerce' ),
-                    __( 'This plugin cannot be activated on WordPress.com-hosted websites. It is restricted due to concerns about WordPress.com policies impacting the community.', 'barcodes-for-woocommerce' ),
-                    esc_url( 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' ),
-                    __( 'Learn more', 'barcodes-for-woocommerce' )
-                )
-            ),
-            esc_html__( 'Plugin Activation Blocked', 'barcodes-for-woocommerce' ),
-            [ 'back_link' => true ]
-        );
-    }
-}
-register_activation_hook( __FILE__, 'wpcom_activation_check' );
-
-/**
- * Add a deactivation flag when the plugin is deactivated.
- *
- * @since  0.0.2
- * @return void
- */
-function wpcom_deactivation_flag() {
-    add_option( 'wpcom_deactivation_notice', 'https://robertdevore.com/why-this-plugin-doesnt-support-wordpress-com-hosting/' );
-}
-register_deactivation_hook( __FILE__, 'wpcom_deactivation_flag' );
