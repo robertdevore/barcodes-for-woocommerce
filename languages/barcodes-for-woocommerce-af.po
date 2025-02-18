@@ -1,0 +1,200 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Barcodes for WooCommerce®\n"
+"POT-Creation-Date: 2025-02-18 14:58-0500\n"
+"PO-Revision-Date: 2025-02-18 14:59-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: barcodes-for-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: classes/BarcodesForWooCommerce.php:50 classes/BarcodesForWooCommerce.php:350
+msgid "Barcodes for WooCommerce"
+msgstr "Strepiekodes vir WooCommerce"
+
+#: classes/BarcodesForWooCommerce.php:51
+msgid "Barcodes"
+msgstr "Strepiekodes"
+
+#: classes/BarcodesForWooCommerce.php:168
+msgid "No new products need barcodes."
+msgstr "Geen nuwe produkte het strepieskodes nodig nie."
+
+#: classes/BarcodesForWooCommerce.php:169
+msgid "All products processed."
+msgstr "Alle produkte verwerk."
+
+#: classes/BarcodesForWooCommerce.php:226
+msgid "No order ID provided."
+msgstr "Geen bestelling-ID verskaf nie."
+
+#: classes/BarcodesForWooCommerce.php:237 includes/display-barcodes.php:23
+#: includes/display-barcodes.php:44 includes/display-barcodes.php:126
+#: includes/display-barcodes.php:127
+msgid "Order Barcode"
+msgstr "Bestel strepieskode"
+
+#: classes/BarcodesForWooCommerce.php:241
+msgid "No barcode found."
+msgstr "Geen strepieskode gevind nie."
+
+#: classes/BarcodesForWooCommerce.php:268
+msgid "All orders already have barcodes."
+msgstr "Alle bestellings het reeds strepieskodes."
+
+#: classes/BarcodesForWooCommerce.php:276
+msgid "All orders processed."
+msgstr "Alle bestellings verwerk."
+
+#: classes/BarcodesForWooCommerce.php:299
+msgid "No barcode provided."
+msgstr "Geen strepieskode verskaf nie."
+
+#: classes/BarcodesForWooCommerce.php:330
+msgid "Order not found."
+msgstr "Bestelling nie gevind nie."
+
+#: classes/BarcodesForWooCommerce.php:342
+#: classes/BarcodesForWooCommerce.php:385
+msgid "General Settings"
+msgstr "Algemene Verstellings"
+
+#: classes/BarcodesForWooCommerce.php:343
+#: classes/BarcodesForWooCommerce.php:421
+msgid "Scan Barcodes"
+msgstr "Skandeer strepieskodes"
+
+#: classes/BarcodesForWooCommerce.php:344
+msgid "Advanced"
+msgstr "Gevorderd"
+
+#: classes/BarcodesForWooCommerce.php:360
+msgid "Support"
+msgstr "Hulp"
+
+#: classes/BarcodesForWooCommerce.php:362
+msgid "Documentation"
+msgstr "Dokumentasie"
+
+#: classes/BarcodesForWooCommerce.php:389
+msgid "Enable Barcodes"
+msgstr "Aktiveer strepieskodes"
+
+#: classes/BarcodesForWooCommerce.php:398
+msgid "Barcode Type"
+msgstr "Streepkode tipe"
+
+#: classes/BarcodesForWooCommerce.php:403
+msgid "QR Code"
+msgstr "QR Kode"
+
+#: classes/BarcodesForWooCommerce.php:410
+msgid "Barcode Color"
+msgstr "Streepkode kleur"
+
+#: classes/BarcodesForWooCommerce.php:422
+msgid "Use this page to scan barcodes and manage orders."
+msgstr ""
+"Gebruik hierdie bladsy om strepieskodes te skandeer en bestellings te "
+"bestuur."
+
+#: classes/BarcodesForWooCommerce.php:423
+msgid "Search barcodes"
+msgstr "Soek strepieskodes"
+
+#: classes/BarcodesForWooCommerce.php:424
+msgid "Search"
+msgstr "Soek"
+
+#: classes/BarcodesForWooCommerce.php:426
+msgid "Or use your camera to scan"
+msgstr "Of gebruik jou kamera om te skandeer"
+
+#: classes/BarcodesForWooCommerce.php:428
+msgid "Start Scanner"
+msgstr "Begin Skandeerder"
+
+#: classes/BarcodesForWooCommerce.php:433
+msgid "Advanced Settings"
+msgstr "Gevorderde instellings"
+
+#: classes/BarcodesForWooCommerce.php:434
+msgid "Generate barcodes for existing orders and products."
+msgstr "Genereer strepieskodes vir bestaande bestellings en produkte."
+
+#: classes/BarcodesForWooCommerce.php:436
+msgid "Orders"
+msgstr "Bestellings"
+
+#: classes/BarcodesForWooCommerce.php:437
+msgid "Generate Barcodes for Orders"
+msgstr "Genereer strepieskodes vir bestellings"
+
+#: classes/BarcodesForWooCommerce.php:444
+msgid "Products"
+msgstr "Produkte"
+
+#: classes/BarcodesForWooCommerce.php:445
+msgid "Generate Barcodes for Products"
+msgstr "Genereer strepieskodes vir produkte"
+
+#: includes/display-barcodes.php:22 includes/display-barcodes.php:43
+#: includes/display-barcodes.php:123
+msgid "Order Barcode:"
+msgstr "Bestel strepieskode:"
+
+#: includes/display-barcodes.php:24
+msgid "Barcode Text:"
+msgstr "Streepkode teks:"
+
+#: includes/display-barcodes.php:66
+msgid "Scan to share this product:"
+msgstr "Skandeer om hierdie produk te deel:"
+
+#: includes/display-barcodes.php:71
+msgid "Product QR Code"
+msgstr "Produk QR-kode"
+
+#: includes/display-barcodes.php:92
+msgid "Product Barcode:"
+msgstr "Produk strepieskode:"
+
+#: includes/display-barcodes.php:94
+msgid "Product Barcode"
+msgstr "Produk strepieskode"
+
+#. Plugin Name of the plugin/theme
+msgid "Barcodes for WooCommerce®"
+msgstr "Strepiekodes vir WooCommerce®"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/robertdevore/barcodes-for-woocommerce/"
+msgstr "https://github.com/robertdevore/barcodes-for-woocommerce/"
+
+#. Description of the plugin/theme
+msgid ""
+"Generate and manage barcodes/QR codes for WooCommerce orders and products."
+msgstr ""
+"Genereer en bestuur strepieskodes/QR-kodes vir WooCommerce-bestellings en -"
+"produkte."
+
+#. Author of the plugin/theme
+msgid "Robert DeVore"
+msgstr "Robert DeVore"
+
+#. Author URI of the plugin/theme
+msgid "https://robertdevore.com/"
+msgstr "https://robertdevore.com/"
